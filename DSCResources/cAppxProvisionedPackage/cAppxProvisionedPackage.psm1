@@ -56,6 +56,8 @@ function Test-TargetResource {
         $LicensePath
     )
 
+    Write-Verbose ('Testing existence of App')
+
     $CurrentState = Get-TargetResource -PackageName $PackageName
     if ($Ensure -ne $CurrentState.Ensure) {
         # Not match Ensure state
@@ -97,11 +99,17 @@ function Set-TargetResource {
     switch ($Ensure) {
         'Absent' {
             $Appx = Get-TargetResource -PackageName $PackageName
-            Remove-AppxProvisionedPackage -Online -PackageName $Appx.PackageName -ErrorAction Stop
+            if($Appx){
+                Write-Verbose ('Removing the Appx package: {0}' -f $Appx.PackageName)
+                Remove-AppxProvisionedPackage -Online -PackageName $Appx.PackageName -ErrorAction Stop
+            }
+            else{
+                Write-Warning 'The Appx package was not found.'
+            }
         }
         'Present' {
             if ((-not $PackagePath) -or (-not (Test-Path $PackagePath))) {
-                Write-Error ('PackagePath:"{0}" not found.' -f $PackagePath)
+                Write-Error ('PackagePath "{0}" not found.' -f $PackagePath)
                 return
             }
 
@@ -120,6 +128,7 @@ function Set-TargetResource {
                 $AppxParam.SkipLicense = $true
             }
 
+            Write-Verbose 'Installing the Appx package'
             Add-AppxProvisionedPackage @AppxParam -Online -ErrorAction Stop
         }
     }

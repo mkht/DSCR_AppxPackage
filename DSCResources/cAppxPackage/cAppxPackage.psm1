@@ -60,6 +60,8 @@ function Test-TargetResource {
         $Register = $false
     )
 
+    Write-Verbose ('Testing existence of App')
+
     $CurrentState = Get-TargetResource -Name $Name
     if ($Ensure -ne $CurrentState.Ensure) {
         # Not match Ensure state
@@ -105,11 +107,17 @@ function Set-TargetResource {
     switch ($Ensure) {
         'Absent' {
             $Appx = Get-TargetResource -Name $Name -ErrorAction SilentlyContinue
-            Get-AppxPackage -Name $Appx.name | Remove-AppxPackage
+            if($Appx){
+                Write-Verbose ('Removing the Appx package: {0}' -f $Appx.name)
+                Get-AppxPackage -Name $Appx.name | Remove-AppxPackage
+            }
+            else{
+                Write-Warning 'The Appx package was not found.'
+            }
         }
         'Present' {
             if ((-not $PackagePath) -or (-not (Test-Path $PackagePath))) {
-                Write-Error ('PackagePath:"{0}" not found.' -f $PackagePath)
+                Write-Error ('PackagePath "{0}" not found.' -f $PackagePath)
                 return
             }
 
@@ -126,6 +134,7 @@ function Set-TargetResource {
                 $AppxParam.DisableDevelopmentMode = $true
             }
 
+            Write-Verbose 'Installing the Appx package'
             Add-AppxPackage @AppxParam -ForceApplicationShutdown -ErrorAction Stop
         }
     }
