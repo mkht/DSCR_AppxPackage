@@ -56,5 +56,29 @@ DscResourcesToExport = @('cAppxPackage', 'cAppxProvisionedPackage')
 # このモジュールからエクスポートされたコマンドの既定のプレフィックス。既定のプレフィックスをオーバーライドする場合は、Import-Module -Prefix を使用します。
 # DefaultCommandPrefix = ''
 
+# RootModule/ModuleToProcess に指定されているモジュールに渡すプライベート データ。これには、PowerShell で使用される追加のモジュール メタデータを含む PSData ハッシュテーブルが含まれる場合もあります。
+PrivateData = @{
+
+        PSData = @{
+
+            # このモジュールに適用されているタグ。オンライン ギャラリーでモジュールを検出する際に役立ちます。
+            Tags = ('DesiredStateConfiguration','DSC', 'Appx', 'UWP', 'ProvisonedPackage')
+
+            # A URL to the license for this module.
+            LicenseUri = 'https://github.com/mkht/DSCR_AppxPackage/blob/master/LICENSE'
+
+            # このプロジェクトのメイン Web サイトの URL。
+            ProjectUri = 'https://github.com/mkht/DSCR_AppxPackage'
+
+            # このモジュールを表すアイコンの URL。
+            # IconUri = ''
+
+            # このモジュールの ReleaseNotes
+            # ReleaseNotes = ''
+
+        } # PSData ハッシュテーブル終了
+
+    } # PrivateData ハッシュテーブル終了
+
 }
 
