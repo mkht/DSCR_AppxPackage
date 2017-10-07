@@ -27,7 +27,7 @@ CompanyName = ''
 Copyright = '(c) 2017 mkht All rights reserved.'
 
 # このモジュールの機能の説明
-# Description = ''
+Description = 'PowerShell DSC Resource to manage UWP App Packages'
 
 # このモジュールに必要な Windows PowerShell エンジンの最小バージョン
 PowerShellVersion = '5.0'
