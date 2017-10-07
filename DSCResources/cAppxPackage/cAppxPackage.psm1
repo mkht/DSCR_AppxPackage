@@ -8,16 +8,16 @@
         $Name
     )
 
-    if(Test-SystemUser){
+    if (Test-SystemUser) {
         Write-Error ('Running in System Context is not supported')
     }
 
     $GetRes = @{
         Ensure         = 'Absent'
-        Name    = $Name
+        Name           = $Name
         PackagePath    = ''
         DependencyPath = ''
-        Register    = $false
+        Register       = $false
     }
 
     $Appx = Get-AppxPackage | ? {$_.Name -like ($Name + '*')} | select -First 1
@@ -100,18 +100,18 @@ function Set-TargetResource {
         $Register = $false
     )
 
-    if(Test-SystemUser){
+    if (Test-SystemUser) {
         Write-Error ('Running in System Context is not supported')
     }
 
     switch ($Ensure) {
         'Absent' {
             $Appx = Get-TargetResource -Name $Name -ErrorAction SilentlyContinue
-            if($Appx){
+            if ($Appx) {
                 Write-Verbose ('Removing the Appx package: {0}' -f $Appx.name)
                 Get-AppxPackage -Name $Appx.name | Remove-AppxPackage
             }
-            else{
+            else {
                 Write-Warning 'The Appx package was not found.'
             }
         }
@@ -122,7 +122,7 @@ function Set-TargetResource {
             }
 
             $AppxParam = @{
-                Path    = $PackagePath
+                Path = $PackagePath
             }
 
             if ($DependencyPath) {

@@ -9,11 +9,11 @@
     )
 
     $GetRes = @{
-        Ensure         = 'Absent'
-        PackageName    = $PackageName
-        PackagePath    = ''
+        Ensure                = 'Absent'
+        PackageName           = $PackageName
+        PackagePath           = ''
         DependencyPackagePath = ''
-        LicensePath    = ''
+        LicensePath           = ''
     }
 
     $Appx = Get-AppxProvisionedPackage -Online | ? {$_.PackageName -like ($PackageName + '*')} | select -First 1
@@ -99,11 +99,11 @@ function Set-TargetResource {
     switch ($Ensure) {
         'Absent' {
             $Appx = Get-TargetResource -PackageName $PackageName
-            if($Appx){
+            if ($Appx) {
                 Write-Verbose ('Removing the Appx package: {0}' -f $Appx.PackageName)
                 Remove-AppxProvisionedPackage -Online -PackageName $Appx.PackageName -ErrorAction Stop
             }
-            else{
+            else {
                 Write-Warning 'The Appx package was not found.'
             }
         }
@@ -124,7 +124,7 @@ function Set-TargetResource {
             if ($LicensePath) {
                 $AppxParam.LicensePath = $LicensePath
             }
-            else{
+            else {
                 $AppxParam.SkipLicense = $true
             }
 
