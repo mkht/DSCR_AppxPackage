@@ -109,7 +109,7 @@ function Set-TargetResource {
         }
         'Present' {
             if ((-not $PackagePath) -or (-not (Test-Path $PackagePath))) {
-                Write-Error ('PackagePath:"{0}" not found.')
+                Write-Error ('PackagePath:"{0}" not found.' -f $PackagePath)
                 return
             }
 
