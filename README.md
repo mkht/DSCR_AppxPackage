@@ -12,7 +12,7 @@ Install-Module -Name DSCR_AppxPackage
 ## DSC Resources
 * **cAppxPackage**
 For add / remove UWP Apps package to a user account.
-This is a wrapper resource of `Add-AppxPackage` and `Remove-AppxPacage` cmdlets.
+This is a wrapper resource of `Add-AppxPackage` and `Remove-AppxPackage` cmdlets.
 
 * **cAppxProvisonedPackage**
 For add / remove UWP Apps package to a computer.
