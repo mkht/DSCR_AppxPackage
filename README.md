@@ -14,10 +14,16 @@ Install-Module -Name DSCR_AppxPackage
 For add / remove UWP Apps package to a user account.
 This is a wrapper resource of `Add-AppxPackage` and `Remove-AppxPackage` cmdlets.
 
+* **cAppxPackageSet**
+For remove multiple UWP Apps package to a user account at once.
+
 * **cAppxProvisionedPackage**
 For add / remove UWP Apps package to a computer.
 ( Provisioned apps will install for each new user to logon Windows. )
 This is a wrapper resource of `Add-AppxProvisionedPackage` and `Remove-AppxProvisionedPackage` cmdlets.
+
+* **cAppxProvisionedPackageSet**
+For remove multiple UWP Apps package to a computer at once.
 
 ## Properties
 ### cAppxPackage
@@ -43,6 +49,14 @@ This is a wrapper resource of `Add-AppxProvisionedPackage` and `Remove-AppxProvi
 + [PSCredential] **PsDscRunAsCredential** (Required):
     + The credential for a user that will add /remove the App.
 
+### cAppxPackageSet
++ [string] **Ensure** (Write):
+    + You should specify `Absent`
+
++ [string[]] **Name** (Key):
+    + Specifies Names of Apps.
+    + The param is used to determine Apps are installed or not.
+
 ### cAppxProvisionedPackage
 + [string] **Ensure** (Write):
     + Specifies whether or not the App should be installed or not.
@@ -61,6 +75,14 @@ This is a wrapper resource of `Add-AppxProvisionedPackage` and `Remove-AppxProvi
 
 + [string] **LicensePath** (Write):
     + Specifies the location of the `.xml` file containing your application license.
+
+### cAppxProvisionedPackageSet
++ [string] **Ensure** (Write):
+    + You should specify `Absent`
+
++ [string[]] **PackageName** (Key):
+    + Specifies Names of Apps.
+    + The param is used to determine Apps are installed or not.
 
 ----
 ## Examples
