@@ -19,7 +19,7 @@
     }
 
     $TemplateString = @"
-    cAppxProvisionedPackageSet Resource{0}
+    cAppxProvisionedPackage Resource{0}
     {{
         Ensure = '{1}'
         PackageName   = '{2}'
