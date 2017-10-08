@@ -14,10 +14,10 @@ Install-Module -Name DSCR_AppxPackage
 For add / remove UWP Apps package to a user account.
 This is a wrapper resource of `Add-AppxPackage` and `Remove-AppxPackage` cmdlets.
 
-* **cAppxProvisonedPackage**
+* **cAppxProvisionedPackage**
 For add / remove UWP Apps package to a computer.
-( Provisoned apps wil install for each new user to logon Windows. )
-This is a wrapper resource of `Add-AppxProvisonedPackage` and `Remove-AppxProvisonedPackage` cmdlets.
+( Provisioned apps will install for each new user to logon Windows. )
+This is a wrapper resource of `Add-AppxProvisionedPackage` and `Remove-AppxProvisionedPackage` cmdlets.
 
 ## Properties
 ### cAppxPackage
