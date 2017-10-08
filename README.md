@@ -43,7 +43,7 @@ This is a wrapper resource of `Add-AppxProvisionedPackage` and `Remove-AppxProvi
 + [PSCredential] **PsDscRunAsCredential** (Required):
     + The credential for a user that will add /remove the App.
 
-### cAppxPackage
+### cAppxProvisionedPackage
 + [string] **Ensure** (Write):
     + Specifies whether or not the App should be installed or not.
     + The default value is `Present` { `Present` | `Absent` }
