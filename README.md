@@ -90,5 +90,9 @@ Please look in the [Sample](https://github.com/mkht/DSCR_AppxPackage/tree/master
 
 ----
 ## ChangeLog
+### 0.3.0
++ Add `cAppxPackageSet` resource.
++ Add `cAppxProvisionedPackageSet` resource.
+
 ### 0.2.1
 + Initial public release.

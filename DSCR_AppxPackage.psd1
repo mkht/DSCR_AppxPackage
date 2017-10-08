@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # このモジュールのバージョン番号です。
-ModuleVersion = '0.2.1'
+ModuleVersion = '0.3.0'
 
 # このモジュールを一意に識別するために使用される ID
 GUID = 'f1c6e39c-bc04-4fbe-b74a-2154d578295b'
