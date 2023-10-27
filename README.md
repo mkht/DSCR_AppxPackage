@@ -76,6 +76,9 @@ For remove multiple UWP Apps package to a computer at once.
 + [string] **LicensePath** (Write):
     + Specifies the location of the `.xml` file containing your application license.
 
++ [bool] **AllUsers** (Write):
+    + Execute the command to all users. This property only affects when the Ensure is `Absent`. The default value is `$false`.
+
 ### cAppxProvisionedPackageSet
 + [string] **Ensure** (Write):
     + You should specify `Absent`
@@ -84,12 +87,18 @@ For remove multiple UWP Apps package to a computer at once.
     + Specifies Names of Apps.
     + The param is used to determine Apps are installed or not.
 
++ [bool] **AllUsers** (Write):
+    + Execute the command to all users. The default value is `$false`.
+
 ----
 ## Examples
 Please look in the [Sample](https://github.com/mkht/DSCR_AppxPackage/tree/master/Sample) directory.
 
 ----
 ## ChangeLog
+### 0.4.0
++ Add `AllUsers` property to `cAppxProvisionedPackage` and `cAppxProvisionedPackageSet`.
+
 ### 0.3.0
 + Add `cAppxPackageSet` resource.
 + Add `cAppxProvisionedPackageSet` resource.

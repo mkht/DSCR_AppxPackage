@@ -16,7 +16,7 @@
         LicensePath           = ''
     }
 
-    $Appx = Get-AppxProvisionedPackage -Online | ? {$_.PackageName -like ($PackageName + '*')} | select -First 1
+    $Appx = Get-AppxProvisionedPackage -Online | ? { $_.PackageName -like ($PackageName + '*') } | select -First 1
     if ($Appx) {
         $GetRes.Ensure = 'Present'
         $GetRes.PackageName = $Appx.PackageName
@@ -53,7 +53,11 @@ function Test-TargetResource {
 
         [parameter()]
         [string]
-        $LicensePath
+        $LicensePath,
+
+        [Parameter()]
+        [bool]
+        $AllUsers = $false
     )
 
     Write-Verbose ('Testing existence of App')
@@ -93,15 +97,26 @@ function Set-TargetResource {
 
         [parameter()]
         [string]
-        $LicensePath
+        $LicensePath,
+
+        [Parameter()]
+        [bool]
+        $AllUsers = $false
     )
 
     switch ($Ensure) {
         'Absent' {
             $Appx = Get-TargetResource -PackageName $PackageName
             if ($Appx) {
+                $paramHash = @{
+                    Online      = $true
+                    PackageName = $Appx.PackageName
+                }
+                if ($AllUsers) {
+                    $paramHash.AllUsers = $AllUsers
+                }
                 Write-Verbose ('Removing the Appx package: {0}' -f $Appx.PackageName)
-                Remove-AppxProvisionedPackage -Online -PackageName $Appx.PackageName -ErrorAction Stop
+                Remove-AppxProvisionedPackage @paramHash -ErrorAction Stop
             }
             else {
                 Write-Warning 'The Appx package was not found.'

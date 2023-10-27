@@ -7,4 +7,5 @@ class cAppxProvisionedPackage : OMI_BaseResource
     [Write] String PackagePath;
     [Write] String DependencyPackagePath[];
     [Write] String LicensePath;
+    [Write] boolean AllUsers;
 };

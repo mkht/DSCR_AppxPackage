@@ -10,7 +10,11 @@
 
         [parameter(Mandatory = $true)]
         [string[]]
-        $PackageName
+        $PackageName,
+
+        [Parameter()]
+        [bool]
+        $AllUsers = $false
     )
 
     if ($Ensure -ne 'Absent') {
@@ -23,12 +27,19 @@
     {{
         Ensure = '{1}'
         PackageName   = '{2}'
+        AllUsers = {3}
     }}
 "@
 
     $ResourceCount = 0
     $ResourceString = ($PackageName | foreach {
-            ($TemplateString -f $ResourceCount, $Ensure, $_)
+            if ($AllUsers) {
+                $AllUsersString = '$true'
+            }
+            else {
+                $AllUsersString = '$false'
+            }
+            ($TemplateString -f $ResourceCount, $Ensure, $_, $AllUsersString)
             $ResourceCount++
         }) -join "`r`n"
 
